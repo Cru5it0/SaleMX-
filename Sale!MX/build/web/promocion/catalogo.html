@@ -1,0 +1,141 @@
+ <div class="container-fluid mt-5">
+    <h2>Promociones</h2>
+    <br>
+    <!-- Search form -->
+    <form class="form-inline active-cyan-4">
+        <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Buscar" id="txtSearch"
+               aria-label="Buscar">
+        <button type="button" class="btn btn-outline-info waves-effect" placeholder="Buscar" onclick="buscarTablaPromociones()"> </button>
+        <i class="fas fa-search" aria-hidden="true"></i>
+    </form>
+    <button type="button" class="btn btn-outline-success waves-effect" data-toggle="modal" data-target="#modalPoll-1" onclick="llenarListas()" id="btnAgregar">Agregar</button>
+    <table id="dtPromocion" class="table table-striped" cellspacing="0" width="100%">
+        <thead>
+            <tr>                            
+                <th class="th-sm">Titulo
+                </th>
+                <th class="th-sm">Fecha Inicio
+                </th>
+                <th class="th-sm">Fecha Termino
+                </th>
+                <th class="th-sm">Imagen
+                </th>
+                <th class="th-sm">Descripcion
+                </th>
+                <th class="th-sm">Precio
+                </th>
+                <th class="th-sm">Descuento
+                </th>
+                <th class="th-sm">Sucursal
+                </th>
+                <th class="th-sm">Producto o Servicio
+                </th>
+                <th class="th-sm">Acciones
+                </th>
+                <th class="th-sm" id="eliminar">Eliminar
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tblPromocion">
+
+        </tbody>
+    </table>
+</div>
+<!-- Modal: modalPoll -->
+<div class="modal fade right" id="modalPoll-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading lead"> Promocion
+                </p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" onclick="limpiarDetallePromo()" class="white-text">×</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="far fa-file-alt fa-4x mb-3 animated rotateIn"></i>
+
+                    <div class="modal-body mb-0">
+                        <div class="md-form form-sm">
+                            <input type="text" id="txtTitulo" class="form-control">
+                            <label for="txtTitulo" id="lable1">Titulo Promocion:</label>
+                        </div>
+                        <div class="md-form form-sm">
+                            <input type="date" id="txtFechaInicio" class="form-control">
+                            <label for="txtFechaInicio" id="lable2">Fecha Inicio:</label>
+                        </div>
+                        <div class="md-form form-sm">
+                            <input type="date" id="txtFechaTermino" class="form-control">
+                            <label for="txtFechaTermino" id="lable3">Fecha Termino:</label>
+                        </div>
+                       <div class="md-form form-sm">
+                            <div class="md-form">
+                                <div class="col-md-6 mb-6">
+                                    <layout for="imgFotoP2" class="h4">Fotografia:</layout>
+                                    <img id="imgFotoP2" width="250" height="300">
+                                    <form>
+                                        <div class="md-form">
+                                            <div class="file-field">
+                                                <div class="btn btn-info btn-lg float-left waves-effect waves-light">
+                                                    <span>Cargar</span>
+                                                    <input type="file" name="txtFotoP2" id="txtFotoP2" class="form-control text-black" onchange="cargarFotoP1()">
+                                                    <textarea hidden="true" class="form-control text-black" name="txtBase64P2" id="txtBase64P2"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>   <br><br>
+                         <div class="md-form form-sm">
+                            <input type="text" id="txtDescripcion" class="form-control">
+                            <label for="txtDescripcion" id="lable4">Descripcion de la promocion:</label>
+                        </div>
+                         <div class="md-form form-sm">
+                            <input type="number" id="txtPrecio" class="form-control">
+                            <label for="txtPrecio" id="lable5">Precio:</label>
+                        </div>
+                        <div class="md-form form-sm">
+                            <input type="number" id="txtDescuento" class="form-control">
+                            <label for="txtDescuento" id="lable6">Descuento:</label>
+                        </div>
+                        <div class="md-form form-sm">
+                            <select class="mdb-select md-form" id="lstIdProducto" name="lstIdProducto">
+                                <option  disabled selected>Seleccióna un producto</option>
+                            </select>
+                        </div>
+                        <div class="md-form form-sm">
+                            <select class="mdb-select md-form" id="lstIdSucursal" name="lstIdSucursals">
+                                <option  disabled selected>Seleccióna una Sucursal</option>
+                            </select>
+                        </div>
+                        <div class="md-form form-sm">
+                            <input type="hidden" id="txtIdPromocion" class="form-control">
+                        </div>
+                        
+                    </div>
+                    <br><br>
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal" aria-label="Close" onclick="decidirPromo()">Agregar</button>
+                        <a type="button" class="btn btn-outline-primary waves-effect" onclick="limpiarDetallePromo()"data-dismiss="modal">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal: modalPoll -->
+<script>
+    // Material Select Initialization
+    $(document).ready(function () {
+        $('.mdb-select').materialSelect();
+    });
+</script>
+
